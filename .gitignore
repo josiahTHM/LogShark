@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+.venv/
+venv/
+
+# Local-only (not published)
+tests/
+fixtures/
+logs/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Generated reports (optional local output)
+report.json
+report.csv
+blocklist.txt
