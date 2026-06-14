@@ -1,0 +1,46 @@
+[project]
+name = "logshark"
+version = "0.1.0"
+description = "Failed login and access detection for host and network logs"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "josiahTHM" }]
+keywords = ["security", "logs", "brute-force", "cli"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Security",
+    "Topic :: System :: Logging",
+]
+dependencies = []
+
+[project.scripts]
+logshark = "logshark.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/josiahTHM/LogShark"
+Repository = "https://github.com/josiahTHM/LogShark"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/logshark"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/tests",
+    "/fixtures",
+    "/README.md",
+    "/LICENSE",
+]

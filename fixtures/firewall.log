@@ -1,0 +1,6 @@
+May 17 12:05:00 fw01 kernel: Deny TCP src=185.122.44.10 dst=10.0.0.5 spt=55221 dpt=22
+May 17 12:05:01 fw01 kernel: Deny TCP src=185.122.44.10 dst=10.0.0.5 spt=55222 dpt=22
+May 17 12:05:02 fw01 kernel: Deny TCP src=185.122.44.10 dst=10.0.0.5 spt=55223 dpt=22
+2026-05-17T12:05:03Z deny tcp src=203.0.113.5:54321 dst=10.0.0.5:22
+2026-05-17T12:05:04Z deny tcp src=203.0.113.5:54322 dst=10.0.0.5:22
+May 17 12:05:05 fw01 kernel: Deny TCP src=10.0.0.99 dst=10.0.0.5 spt=1234 dpt=443

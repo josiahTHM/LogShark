@@ -3,12 +3,12 @@ __pycache__/
 *.py[cod]
 *.pyo
 *.egg-info/
+dist/
+build/
 .venv/
 venv/
 
-# Local-only (not published)
-tests/
-fixtures/
+# Generated operational logs
 logs/
 
 # OS / editor

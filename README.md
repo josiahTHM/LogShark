@@ -9,6 +9,21 @@ Supports real-world log formats (Linux auth, Windows Event 4625, firewall, JSON/
 - Python 3.10+
 - No third-party dependencies (stdlib only)
 
+## Installation
+
+```bash
+git clone https://github.com/josiahTHM/LogShark.git
+cd LogShark
+pip install -e .
+```
+
+Verify the install:
+
+```bash
+logshark --version
+logshark --help
+```
+
 ## Architecture
 
 ```text
@@ -89,31 +104,36 @@ Supports real-world log formats (Linux auth, Windows Event 4625, firewall, JSON/
 
 
 ## Quick start
+
 ```bash
 # Basic usage: log_file -f format -t threshold
-python3 LogShark.py custom_log.txt -f custom -t 3
+logshark fixtures/custom_log.txt -f custom -t 3
 
 # Linux auth brute-force check (skip loopback)
-python3 LogShark.py auth.log -f linux-auth -t 2 -x
+logshark fixtures/auth.log -f linux-auth -t 2 -x
 
 # Auto-detect format
-python3 LogShark.py firewall.log -t 2
+logshark fixtures/firewall.log -t 2
 ```
 
 **Note:** `log_file` is a required positional argument (the path to the log you analyze). `-f` is the log **format**, not the file path.
 
+You can also run without installing:
+
+```bash
+python -m logshark fixtures/auth.log -f linux-auth -t 2
+```
+
 ## CLI reference
 
 ```text
-python3 LogShark.py <log_file> -f <format> -t <threshold> [options]
-python3 LogShark.py log_file [options]
+logshark <log_file> -f <format> -t <threshold> [options]
+logshark log_file [options]
 ```
-
-Or invoke via the program name shown in help: `LogShark`.
-
 
 | Long flag           | Short | Description                                             |
 | ------------------- | ----- | ------------------------------------------------------- |
+| `--version`         |       | Show version and exit                                   |
 | `--threshold`       | `-t`  | Minimum failure count to flag an IP (default: `1`)      |
 | `--format`          | `-f`  | Log format or `auto` (default: `auto`)                  |
 | `--failure-pattern` | `-p`  | Extra regex to mark failure lines                       |
@@ -153,21 +173,21 @@ IP extraction uses format-specific field rules first, then a generic fallback th
 
 ```bash
 # Threshold report with counts on stdout
-python3 LogShark.py custom_log.txt -t 3
+logshark fixtures/custom_log.txt -t 3
 
 # Windows Security export (4625 failed logons)
-python3 LogShark.py windows_4625.txt -f windows-4625 -t 2
+logshark fixtures/windows_4625.txt -f windows-4625 -t 2
 
 # Firewall deny storm with exports
-python3 LogShark.py firewall.log -f firewall -t 2 \
+logshark fixtures/firewall.log -f firewall -t 2 \
   -j report.json -c report.csv -b blocklist.txt
 
 # Time-bounded analysis
-python3 LogShark.py auth.log -f linux-auth \
+logshark fixtures/auth.log -f linux-auth \
   -s "2026-05-17 12:01:05" -u "2026-05-17 12:01:07" -t 1
 
 # JSON events with custom IP field
-python3 LogShark.py events.ndjson -f json -i source.ip -t 2
+logshark fixtures/events.ndjson -f json -i source.ip -t 2
 ```
 
 ## Output
@@ -206,8 +226,16 @@ The analyzer writes a **DEBUG-level operational trace** to `logs/app.log` by def
 - **ERROR**: Missing input file, export write failures
 
 Use `-v` to mirror DEBUG output to stderr for live troubleshooting.
+
+## Development
+
+```bash
+pip install -e .
+python3 -m unittest discover -s tests -v
 ```
+
+Sample logs for testing live in [`fixtures/`](fixtures/).
 
 ## License
 
-Educational / personal project — **🦈 LogShark**.
+MIT License — see [LICENSE](LICENSE).
