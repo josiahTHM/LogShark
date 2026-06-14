@@ -1,7 +1,5 @@
 # 🦈 LogShark
 
-**Failed login & access detection for host and network logs.**
-
 LogShark is a Python CLI tool that scans host and network logs for failed authentication and denied access events, counts occurrences by source IP, and flags addresses that exceed a configurable threshold.
 
 Supports real-world log formats (Linux auth, Windows Event 4625, firewall, JSON/NDJSON, and custom app logs), full IPv4/IPv6 parsing, time-window filtering, and export to JSON, CSV, or a firewall-ready blocklist.
